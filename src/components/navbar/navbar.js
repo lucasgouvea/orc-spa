@@ -2,6 +2,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import { Navitem } from './navitem';
 import { Outlet } from "react-router-dom";
 import { useLocation, Link } from 'react-router-dom'
+import './navbar.css';
 
 
 const selectedStyle = {
