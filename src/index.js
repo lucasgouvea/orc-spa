@@ -6,10 +6,9 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { HomePage, ErrorPage, MotoristasPage } from "./pages";
+import { HomePage, ErrorPage, DriversPage } from "./pages";
 import { Navbar } from './components';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 
 
 const router = createBrowserRouter([
@@ -25,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/motoristas",
-        element: <MotoristasPage />,
+        element: <DriversPage />,
       },
     ]
   },
