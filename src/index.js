@@ -9,6 +9,7 @@ import {
 import { HomePage, ErrorPage, MotoristasPage } from "./pages";
 import { Navbar } from './components';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,12 @@ const theme = createTheme({
     "fontWeightLight": 300,
     "fontWeightRegular": 400,
     "fontWeightMedium": 500
-  }
+  },
+  palette: {
+    primary: {
+      main: "#042440",
+    },
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

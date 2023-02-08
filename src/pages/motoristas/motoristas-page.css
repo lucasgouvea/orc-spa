@@ -2,5 +2,14 @@
   text-align: center;
   display: flex;
   justify-content: center;
-  margin-top: 4%
+  align-items: flex-start;
+  margin-top: 2%;
+  flex-direction: column;
+  justify-self: center;
+  width: 50%;
+}
+
+#table {
+  margin-top: 2%;
+  width: 100%
 }

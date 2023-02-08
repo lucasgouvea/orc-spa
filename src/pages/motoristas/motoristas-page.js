@@ -1,7 +1,9 @@
 
+import { Typography } from '@mui/material';
 import { useState } from 'react';
 import { GenericTable, Modal } from '../../components';
 import './motoristas-page.css';
+import Button from '@mui/material/Button';
 
 const motoristas = [
     {
@@ -42,14 +44,23 @@ export function MotoristasPage() {
 
     return (
         <div className="motoristas-page">
-            <GenericTable rows={rows} cols={cols} onEdit={(i) => setMotoristaIndex(i)} onDelete={(i) => deleteRow(i)} />
-            <Modal
-                open={motoristaIndex !== -1}
-                onClose={() => setMotoristaIndex(-1)}
-                onUpdate={() => setMotoristaIndex(-1)}
-                onCancel={() => setMotoristaIndex(-1)}
-                data={motoristas[motoristaIndex]}
-            />
+            <Button variant="contained">Novo motorista</Button>
+
+            <div id="table">
+                <GenericTable
+                    rows={rows}
+                    cols={cols}
+                    onEdit={(i) => setMotoristaIndex(i)} onDelete={(i) => deleteRow(i)}
+                    width="100%"
+                />
+                <Modal
+                    open={motoristaIndex !== -1}
+                    onClose={() => setMotoristaIndex(-1)}
+                    onUpdate={() => setMotoristaIndex(-1)}
+                    onCancel={() => setMotoristaIndex(-1)}
+                    data={motoristas[motoristaIndex]}
+                />
+            </div>
         </div>
     );
 }
