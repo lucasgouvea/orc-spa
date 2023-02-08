@@ -1,20 +1,40 @@
 
 import { useState } from 'react';
-import { GenericTable } from '../../components/generic-table';
+import { GenericTable, Modal } from '../../components';
 import './motoristas-page.css';
 
+const motoristas = [
+    {
+        name: "Sebá",
+        licenses: ["A", "B"],
+        age: 30
+    },
+    {
+        name: "João",
+        licenses: ["A"],
+        age: 32
+    },
+    {
+        name: "Renato",
+        licenses: ["A", "B", "C"],
+        age: 44
+    }
+]
 
 export function MotoristasPage() {
     const [rows, setRows] = useState([
-        ['Sebá', "A, B", 30],
-        ['João', "A", 32],
-        ['Renato', "A, B, C", 44],
+        [motoristas[0].name, motoristas[0].licenses.join(","), motoristas[0].age],
+        [motoristas[1].name, motoristas[1].licenses.join(","), motoristas[1].age],
+        [motoristas[2].name, motoristas[2].licenses.join(","), motoristas[2].age],
     ])
     const [cols, setCols] = useState([
         "Nome",
         "Cartas",
         "Idade",
     ])
+    const [motoristaIndex, setMotoristaIndex] = useState(-1);
+
+
 
     const deleteRow = (i) => {
         setRows([...rows.slice(0, i), ...rows.slice(i + 1)])
@@ -22,7 +42,14 @@ export function MotoristasPage() {
 
     return (
         <div className="motoristas-page">
-            <GenericTable rows={rows} cols={cols} onEdit={(i) => alert(i)} onDelete={(i) => deleteRow(i)} />
+            <GenericTable rows={rows} cols={cols} onEdit={(i) => setMotoristaIndex(i)} onDelete={(i) => deleteRow(i)} />
+            <Modal
+                open={motoristaIndex !== -1}
+                onClose={() => setMotoristaIndex(-1)}
+                onUpdate={() => setMotoristaIndex(-1)}
+                onCancel={() => setMotoristaIndex(-1)}
+                data={motoristas[motoristaIndex]}
+            />
         </div>
     );
 }

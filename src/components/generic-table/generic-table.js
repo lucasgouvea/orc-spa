@@ -13,12 +13,13 @@ function Icons({ index, onEdit, onDelete }) {
                 color="#042440"
                 size="18"
                 onClick={() => onEdit(index)}
+                style={{ cursor: "pointer" }}
             />
             <FaTrash
                 className={"trash-icon"}
                 color="#042440"
                 size="18"
-                style={{ marginLeft: 10 }}
+                style={{ marginLeft: 10, cursor: "pointer" }}
                 onClick={() => onDelete(index)}
 
             />

@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { HomePage, ErrorPage, MotoristasPage } from "./pages";
-import { Navbar } from './components/navbar';
+import { Navbar } from './components';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
