@@ -5,7 +5,17 @@ import { driverSchema } from "./driver-schema";
 import { useEffect } from "react";
 
 export default function EditDriverModal({ onClose, open, data }) {
-  const { handleSubmit, handleChange, handleBlur, values, errors, touched, setValues } = useFormik({
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    errors,
+    touched,
+    setValues,
+    isValid,
+    dirty
+  } = useFormik({
     initialValues: {
       name: "",
       age: "",
@@ -79,7 +89,7 @@ export default function EditDriverModal({ onClose, open, data }) {
           />
         </Box>
 
-        <Box style={{ marginTop: 20, width: 100 }}>
+        <Box style={{ marginTop: 20 }}>
           <TextField
             id="age"
             label="Idade"
@@ -90,12 +100,13 @@ export default function EditDriverModal({ onClose, open, data }) {
             onBlur={handleBlur}
             value={values.age}
             type="number"
+            fullWidth
           />
         </Box>
 
         <Box
           style={{ marginTop: 50, display: "flex", width: "100%", justifyContent: "space-around" }}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={!isValid || !dirty}>
             Atualizar
           </Button>
           <Button variant="outlined" onClick={handleCancel}>

@@ -4,7 +4,17 @@ import { useFormik } from "formik";
 import { driverSchema } from "./driver-schema";
 
 export default function CreateDriverModal({ onClose, open }) {
-  const { handleSubmit, handleChange, handleBlur, values, errors, touched, resetForm } = useFormik({
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    errors,
+    touched,
+    resetForm,
+    isValid,
+    dirty
+  } = useFormik({
     initialValues: {
       name: "",
       age: "",
@@ -72,7 +82,7 @@ export default function CreateDriverModal({ onClose, open }) {
           />
         </Box>
 
-        <Box style={{ marginTop: 20, width: 100 }}>
+        <Box style={{ marginTop: 20 }}>
           <TextField
             id="age"
             label="Idade"
@@ -83,12 +93,13 @@ export default function CreateDriverModal({ onClose, open }) {
             onBlur={handleBlur}
             value={values.age}
             type="number"
+            fullWidth
           />
         </Box>
 
         <Box
           style={{ marginTop: 50, display: "flex", width: "100%", justifyContent: "space-around" }}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={!isValid || !dirty}>
             Atualizar
           </Button>
           <Button variant="outlined" onClick={handleCancel}>
