@@ -5,8 +5,6 @@ import { driverSchema } from "./driver-schema";
 import { useEffect } from "react";
 
 export default function EditDriverModal({ onClose, open, data }) {
-  console.log(data);
-
   const { handleSubmit, handleChange, handleBlur, values, errors, touched, setValues } = useFormik({
     initialValues: {
       name: "",
