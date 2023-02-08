@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GenericTable, GenericModal } from "../../components";
+import { GenericTable } from "../../components";
 import "./drivers-page.css";
 import Button from "@mui/material/Button";
 import EditDriverModal from "./edit-driver-modal";
@@ -8,28 +8,54 @@ import CreateDriverModal from "./create-driver-modal";
 const drivers = [
   {
     name: "Sebá",
-    licenses: ["A", "B"],
+    licenseA: true,
+    licenseB: true,
+    licenseC: false,
+    licenseD: false,
     age: 30
   },
   {
     name: "João",
-    licenses: ["A"],
+    licenseA: true,
+    licenseB: false,
+    licenseC: false,
+    licenseD: false,
     age: 32
   },
   {
     name: "Renato",
-    licenses: ["A", "B", "C"],
+    licenseA: true,
+    licenseB: true,
+    licenseC: true,
+    licenseD: false,
     age: 44
   }
 ];
 
 const cols = ["Nome", "Cartas", "Idade"];
 
+function parseLicenses(driver) {
+  const licenses = [];
+  if (driver.licenseA) {
+    licenses.push("A");
+  }
+  if (driver.licenseB) {
+    licenses.push("B");
+  }
+  if (driver.licenseC) {
+    licenses.push("C");
+  }
+  if (driver.licenseD) {
+    licenses.push("D");
+  }
+  return licenses.join(",");
+}
+
 export function DriversPage() {
   const [rows, setRows] = useState([
-    [drivers[0].name, drivers[0].licenses.join(","), drivers[0].age],
-    [drivers[1].name, drivers[1].licenses.join(","), drivers[1].age],
-    [drivers[2].name, drivers[2].licenses.join(","), drivers[2].age]
+    [drivers[0].name, parseLicenses(drivers[0]), drivers[0].age],
+    [drivers[1].name, parseLicenses(drivers[1]), drivers[1].age],
+    [drivers[2].name, parseLicenses(drivers[2]), drivers[2].age]
   ]);
 
   const [driverIndex, setDriverIndex] = useState(-1);
@@ -53,19 +79,13 @@ export function DriversPage() {
           onDelete={(i) => deleteRow(i)}
           width="100%"
         />
-        <GenericModal
+        {/* Modals */}
+        <EditDriverModal
+          onClose={() => setDriverIndex(-1)}
           open={driverIndex !== -1}
           data={drivers[driverIndex]}
-          title="Atualizar Motorista">
-          <EditDriverModal
-            onClose={() => setDriverIndex(-1)}
-            onUpdate={() => setDriverIndex(-1)}
-            onCancel={() => setDriverIndex(-1)}
-          />
-        </GenericModal>
-        <GenericModal open={newDriverModal} data={drivers[driverIndex]} title="Cadastrar Motorista">
-          <CreateDriverModal onCancel={() => setNewDriverModal(false)} />
-        </GenericModal>
+        />
+        <CreateDriverModal onClose={() => setNewDriverModal(false)} open={newDriverModal} />
       </div>
     </div>
   );

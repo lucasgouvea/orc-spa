@@ -1,9 +1,10 @@
 import { Button, Checkbox, TextField, Typography, Box, FormControlLabel } from "@mui/material";
+import { GenericModal } from "../../components";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { driverSchema } from "./driver-schema";
 
-export default function CreateDriverModal({ onCancel }) {
-  const { handleSubmit, handleChange, handleBlur, values, errors, touched } = useFormik({
+export default function CreateDriverModal({ onClose, open }) {
+  const { handleSubmit, handleChange, handleBlur, values, errors, touched, resetForm } = useFormik({
     initialValues: {
       name: "",
       age: "",
@@ -15,23 +16,16 @@ export default function CreateDriverModal({ onCancel }) {
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .max(30, "O nome do motorista deve ter no máximo 30 letras")
-        .required("Este campo é obrigatório"),
-      age: Yup.number()
-        .min(18, "A idade deve ser maior que 18 anos")
-        .max(100, "A idade deve ser menor que 100 anos")
-        .required("Este campo é obrigatório"),
-      licenseA: Yup.boolean(),
-      licenseB: Yup.boolean(),
-      licenseC: Yup.boolean(),
-      licenseD: Yup.boolean()
-    })
+    validationSchema: driverSchema
   });
 
+  const handleCancel = () => {
+    setTimeout(() => resetForm(), 500);
+    onClose();
+  };
+
   return (
-    <>
+    <GenericModal open={open} title="Cadastrar Motorista" onClose={handleCancel}>
       <form onSubmit={handleSubmit}>
         <Box style={{ marginTop: 50, width: 400 }}>
           <TextField
@@ -97,11 +91,11 @@ export default function CreateDriverModal({ onCancel }) {
           <Button variant="contained" type="submit">
             Atualizar
           </Button>
-          <Button variant="outlined" onClick={onCancel}>
+          <Button variant="outlined" onClick={handleCancel}>
             Cancelar
           </Button>
         </Box>
       </form>
-    </>
+    </GenericModal>
   );
 }
