@@ -1,15 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "react-query";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HomePage, ErrorPage, DriversPage } from "./pages";
-import { Navbar } from './components';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import { Navbar } from "./components";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const router = createBrowserRouter([
   {
@@ -20,41 +17,43 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage />
       },
       {
         path: "/motoristas",
-        element: <DriversPage />,
-      },
+        element: <DriversPage />
+      }
     ]
-  },
-
+  }
 ]);
 
 const theme = createTheme({
   typography: {
-    "fontFamily": `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif`,
-    "fontSize": 14,
-    "fontWeightLight": 300,
-    "fontWeightRegular": 400,
-    "fontWeightMedium": 500
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500
   },
   palette: {
     primary: {
-      main: "#042440",
-    },
-  },
+      main: "#042440"
+    }
+  }
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const queryClient = new QueryClient();
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
