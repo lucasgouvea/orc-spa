@@ -3,7 +3,7 @@ import { GenericModal } from "../../components";
 import { useFormik } from "formik";
 import { driverSchema } from "./driver-schema";
 
-export default function CreateDriverModal({ onClose, open }) {
+export default function CreateDriverModal({ onClose, open, onSubmit }) {
   const {
     handleSubmit,
     handleChange,
@@ -21,11 +21,10 @@ export default function CreateDriverModal({ onClose, open }) {
       licenseA: false,
       licenseB: false,
       licenseC: false,
-      licenseD: false
+      licenseD: false,
+      licenseE: false
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: (driver) => onSubmit(driver),
     validationSchema: driverSchema
   });
 
@@ -78,6 +77,12 @@ export default function CreateDriverModal({ onClose, open }) {
             control={<Checkbox checked={values.licenseD} />}
             label="D"
             name="licenseD"
+            onChange={handleChange}
+          />
+          <FormControlLabel
+            control={<Checkbox checked={values.licenseE} />}
+            label="E"
+            name="licenseE"
             onChange={handleChange}
           />
         </Box>
