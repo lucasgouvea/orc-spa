@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
 import { Driver } from "./driver";
-import { DriverDTO } from "./driver-dto";
+import { DriverPatchDTO, DriverPostDTO } from "./driver-dto";
 import axios from "axios";
+import { useMutation } from "react-query";
 
 const driversPath = "/v1/drivers";
 
@@ -21,7 +22,32 @@ export function useDrivers() {
   };
 }
 
-export async function createDriver(driver) {
-  const { data: response } = await axios.post(driversPath, new DriverDTO(driver));
-  return response.data;
+export function useCreateDriver(onSuccess, onError) {
+  const { mutate, isLoading } = useMutation(
+    (driver) => axios.post(driversPath, new DriverPostDTO(driver)).then(({ data }) => data),
+    { onSuccess, onError }
+  );
+  return { mutate, isLoading };
+}
+
+export function useUpdateDriver(onSuccess, onError) {
+  const { mutate, isLoading } = useMutation(
+    (driver) =>
+      axios.patch(`${driversPath}/${driver.id}`, new DriverPatchDTO(driver)).then(({ data }) => {
+        return data;
+      }),
+    { onSuccess, onError }
+  );
+  return { mutate, isLoading };
+}
+
+export function useDeleteDriver(onSuccess, onError) {
+  const { mutate, isLoading } = useMutation(
+    (id) =>
+      axios.delete(`${driversPath}/${id}`).then(({ data }) => {
+        return data;
+      }),
+    { onSuccess, onError }
+  );
+  return { mutate, isLoading };
 }

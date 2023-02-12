@@ -1,11 +1,20 @@
 import { Button, Checkbox, TextField, Typography, Box, FormControlLabel } from "@mui/material";
-import { useMutation } from "react-query";
 import { GenericModal, Loading } from "../../components";
 import { useFormik } from "formik";
 import { driverSchema } from "./driver-schema";
-import { createDriver } from "../../hooks";
+import { useCreateDriver } from "../../hooks";
 
 export default function CreateDriverModal({ onClose, open }) {
+  const onSuccess = () => {
+    alert("Motorista cadastrado com sucesso!");
+    onClose();
+  };
+
+  const onError = () => {
+    alert("Houve algum problema!");
+  };
+
+  const { mutate, isLoading } = useCreateDriver(onSuccess, onError);
   const {
     handleSubmit,
     handleChange,
@@ -28,15 +37,6 @@ export default function CreateDriverModal({ onClose, open }) {
     },
     onSubmit: (driver) => mutate(driver),
     validationSchema: driverSchema
-  });
-  const { mutate, isLoading } = useMutation(createDriver, {
-    onSuccess: () => {
-      alert("Motorista cadastrado com sucesso!");
-      onClose();
-    },
-    onError: (e) => {
-      alert("Houve algum problema!");
-    }
   });
 
   const handleCancel = () => {

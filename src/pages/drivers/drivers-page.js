@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { useDrivers } from "../../hooks";
+import { useQueryClient } from "react-query";
+import { useDrivers, useDeleteDriver } from "../../hooks";
 import { GenericTable } from "../../components";
 import "./drivers-page.css";
 import Button from "@mui/material/Button";
@@ -14,14 +15,22 @@ export function DriversPage() {
   const [driverIndex, setDriverIndex] = useState(-1);
   const [newDriverModal, setNewDriverModal] = useState(false);
   const { drivers, error, isLoading } = useDrivers();
+  const queryClient = useQueryClient();
 
-  const deleteRow = (i) => {
-    setRows([...rows.slice(0, i), ...rows.slice(i + 1)]);
+  const onSuccess = () => {
+    alert("Motorista atualizado(a) com sucesso!");
+    queryClient.invalidateQueries("drivers");
   };
+
+  const onError = () => {
+    alert("Houve algum problema!");
+  };
+
+  const { mutate, isLoading: isLoadingDelete } = useDeleteDriver(onSuccess, onError);
 
   useEffect(() => {
     if (drivers) {
-      const rows = drivers.map((d) => d.toRow());
+      const rows = drivers.sort((a, b) => a.name.localeCompare(b.name)).map((d) => d.toRow());
       setRows(rows);
     }
   }, [drivers]);
@@ -39,8 +48,11 @@ export function DriversPage() {
               rows={rows}
               cols={cols}
               onEdit={(i) => setDriverIndex(i)}
-              onDelete={(i) => deleteRow(i)}
-              isLoading={isLoading}
+              onDelete={(i) =>
+                window.confirm(`Deseja remover o(a) motorista "${drivers[i].name}"?`) === true &&
+                mutate(drivers[i].id)
+              }
+              isLoading={isLoading || isLoadingDelete}
             />
             {/* Modals */}
             <EditDriverModal
