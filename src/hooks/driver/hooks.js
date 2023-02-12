@@ -5,7 +5,7 @@ import axios from "axios";
 import { useMutation } from "react-query";
 
 let endpoint = "https://orc-api.lucasgouvea.com";
-if (process.env.REACT_APP_ENV === "dev") {
+if (process.env.NODE_ENV === "development") {
   endpoint = "";
 }
 const driversPath = "/v1/drivers";
