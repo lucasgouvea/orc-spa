@@ -124,7 +124,7 @@ export default function CreateDriverModal({ onClose, open }) {
               justifyContent: "space-around"
             }}>
             <Button variant="contained" type="submit" disabled={!isValid || !dirty}>
-              Atualizar
+              Cadastrar
             </Button>
             <Button variant="outlined" onClick={handleCancel}>
               Cancelar
