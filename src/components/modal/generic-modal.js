@@ -31,7 +31,12 @@ export function GenericModal({ open, onClose, title, children }) {
         }}>
         <Fade in={open}>
           <Box sx={style}>
-            <Typography id="title" variant="h6" component="h2" alignSelf={"center"}>
+            <Typography
+              id="title"
+              variant="h6"
+              component="h2"
+              alignSelf={"center"}
+              style={{ marginBottom: 50 }}>
               {title}
             </Typography>
             {children}

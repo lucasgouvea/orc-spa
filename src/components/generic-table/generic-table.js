@@ -3,6 +3,7 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 import { StyledTableCell, StyledTableRow } from "./styled";
+import { Loading } from "../../components";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 function Icons({ index, onEdit, onDelete }) {
@@ -26,11 +27,14 @@ function Icons({ index, onEdit, onDelete }) {
   );
 }
 
-export function GenericTable({ width, rows, cols: _cols, onEdit, onDelete }) {
+export function GenericTable({ isLoading, rows, cols: _cols, onEdit, onDelete }) {
   const cols = [..._cols, "Ações"];
 
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
-    <Table sx={{ minWidth: 650, width: width }} aria-label="simple table">
+    <Table sx={{ minWidth: 650, width: "100%" }} aria-label="simple table">
       <TableHead>
         <StyledTableRow>
           {cols.map((col, i) =>

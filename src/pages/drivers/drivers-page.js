@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
+import { useDrivers } from "../../hooks";
 import { GenericTable } from "../../components";
 import "./drivers-page.css";
 import Button from "@mui/material/Button";
 import EditDriverModal from "./edit-driver-modal";
 import CreateDriverModal from "./create-driver-modal";
-import { useDrivers, createDriver } from "../../hooks";
 
 const cols = ["Nome", "Cartas", "Idade"];
 
@@ -40,7 +40,7 @@ export function DriversPage() {
               cols={cols}
               onEdit={(i) => setDriverIndex(i)}
               onDelete={(i) => deleteRow(i)}
-              width="100%"
+              isLoading={isLoading}
             />
             {/* Modals */}
             <EditDriverModal
@@ -48,11 +48,7 @@ export function DriversPage() {
               open={driverIndex !== -1}
               data={drivers[driverIndex]}
             />
-            <CreateDriverModal
-              onClose={() => setNewDriverModal(false)}
-              open={newDriverModal}
-              onSubmit={(driver) => createDriver(driver)}
-            />
+            <CreateDriverModal onClose={() => setNewDriverModal(false)} open={newDriverModal} />
           </div>
         </>
       )}
