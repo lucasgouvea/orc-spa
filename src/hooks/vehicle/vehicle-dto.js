@@ -1,7 +1,7 @@
 export class VehiclePostDTO {
-  constructor({ model, license_plate }) {
+  constructor({ model, licensePlate }) {
     this.model = model;
-    this.license_plate = license_plate;
+    this.license_plate = licensePlate;
   }
 }
 

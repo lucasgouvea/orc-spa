@@ -1,4 +1,4 @@
-import { Button, Checkbox, TextField, Typography, Box, FormControlLabel } from "@mui/material";
+import { Button, TextField, Box } from "@mui/material";
 import { GenericModal, Loading } from "../../components";
 import { useFormik } from "formik";
 import { vehicleSchema } from "./vehicle-schema";
