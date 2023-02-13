@@ -29,7 +29,18 @@ export function Navbar() {
           </p>
         </div>
 
-        <Navitem selectedStyle={selectedStyle} name={"motoristas"} pathname={pathname} />
+        <Navitem
+          selectedStyle={selectedStyle}
+          navName={"motoristas"}
+          routeName={"motoristas"}
+          pathName={pathname}
+        />
+        <Navitem
+          selectedStyle={selectedStyle}
+          navName={"veículos"}
+          routeName={"veiculos"}
+          pathName={pathname}
+        />
       </div>
       <Outlet />
     </>

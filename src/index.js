@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, ErrorPage, DriversPage } from "./pages";
+import { HomePage, ErrorPage, DriversPage, VehiclesPage } from "./pages";
 import { Navbar } from "./components";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -22,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/motoristas",
         element: <DriversPage />
+      },
+      {
+        path: "/veiculos",
+        element: <VehiclesPage />
       }
     ]
   }

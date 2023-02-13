@@ -51,7 +51,6 @@ export default function EditDriverModal({ onClose, open, data }) {
   }, [setValues, data]);
 
   const handleCancel = () => {
-    //setTimeout(() => resetForm(), 500);
     onClose();
   };
 
