@@ -11,7 +11,7 @@ export default function EditDriverModal({ onClose, open, data }) {
   const queryClient = useQueryClient();
 
   const onSuccess = () => {
-    alert("Motorista atualizado com sucesso!");
+    alert("Motorista atualizado(a) com sucesso!");
     queryClient.invalidateQueries("drivers");
     onClose();
   };

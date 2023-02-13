@@ -6,7 +6,7 @@ import { useCreateDriver } from "../../hooks";
 
 export default function CreateDriverModal({ onClose, open }) {
   const onSuccess = () => {
-    alert("Motorista cadastrado com sucesso!");
+    alert("Motorista cadastrado(a) com sucesso!");
     onClose();
   };
 

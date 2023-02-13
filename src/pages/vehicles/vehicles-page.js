@@ -18,7 +18,7 @@ export function VehiclesPage() {
   const queryClient = useQueryClient();
 
   const onSuccess = () => {
-    alert("Veículo atualizado(a) com sucesso!");
+    alert("Veículo deletado com sucesso!");
     queryClient.invalidateQueries("vehicles");
   };
 

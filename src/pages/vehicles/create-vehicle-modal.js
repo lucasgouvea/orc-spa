@@ -28,7 +28,7 @@ export default function CreateVehicleModal({ onClose, open }) {
   } = useFormik({
     initialValues: {
       model: "",
-      license_plate: ""
+      licensePlate: ""
     },
     onSubmit: (vehicle) => mutate(vehicle),
     validationSchema: vehicleSchema
@@ -61,14 +61,14 @@ export default function CreateVehicleModal({ onClose, open }) {
 
           <Box style={{ marginTop: 20 }}>
             <TextField
-              id="license_plate"
+              id="licensePlate"
               label="Placa"
               variant="outlined"
-              error={touched.license_plate && errors.license_plate}
-              helperText={errors.license_plate || "Insira a placa do veículo"}
+              error={touched.licensePlate && errors.licensePlate}
+              helperText={errors.licensePlate || "Insira a placa do veículo"}
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.license_plate}
+              value={values.licensePlate}
               fullWidth
             />
           </Box>

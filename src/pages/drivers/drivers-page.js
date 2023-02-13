@@ -18,7 +18,7 @@ export function DriversPage() {
   const queryClient = useQueryClient();
 
   const onSuccess = () => {
-    alert("Motorista atualizado(a) com sucesso!");
+    alert("Motorista deletado(a) com sucesso!");
     queryClient.invalidateQueries("drivers");
   };
 
