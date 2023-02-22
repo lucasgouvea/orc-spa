@@ -7,6 +7,7 @@ import "./navbar.css";
 const selectedStyle = {
   marginTop: "-0.18em",
   textDecoration: "underline",
+  textDecorationColor: "#FDFFF1",
   textUnderlineOffset: "0.4em",
   transition: "0.15s"
 };
@@ -29,24 +30,26 @@ export function Navbar() {
           </p>
         </div>
 
-        <Navitem
-          selectedStyle={selectedStyle}
-          navName={"motoristas"}
-          routeName={"motoristas"}
-          pathName={pathname}
-        />
-        <Navitem
-          selectedStyle={selectedStyle}
-          navName={"veículos"}
-          routeName={"veiculos"}
-          pathName={pathname}
-        />
-        <Navitem
-          selectedStyle={selectedStyle}
-          navName={"empresas"}
-          routeName={"empresas"}
-          pathName={pathname}
-        />
+        <div className="right_nav">
+          <Navitem
+            selectedStyle={selectedStyle}
+            navName={"motoristas"}
+            routeName={"motoristas"}
+            pathName={pathname}
+          />
+          <Navitem
+            selectedStyle={selectedStyle}
+            navName={"veículos"}
+            routeName={"veiculos"}
+            pathName={pathname}
+          />
+          <Navitem
+            selectedStyle={selectedStyle}
+            navName={"empresas"}
+            routeName={"empresas"}
+            pathName={pathname}
+          />
+        </div>
       </div>
       <Outlet />
     </>

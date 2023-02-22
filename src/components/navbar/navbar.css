@@ -11,9 +11,14 @@
 .navbar a {
     color: #FDFFF1;
     text-decoration: none;
+    text-decoration-color: #FDFFF1;
 }
 
 .right_nav {
+    display: flex;
+}
+
+.nav_item {
     display: flex;
     height: 100%;
     justify-content: space-around;
