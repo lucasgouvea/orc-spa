@@ -60,7 +60,7 @@ export function useDeleteDriver(onSuccess, onError) {
   const headers = useHeaders();
   const { mutate, isLoading } = useMutation(
     (id) =>
-      axios.delete(`${endpoint}${driversPath}/${id}`, headers).then(({ data }) => {
+      axios.delete(`${endpoint}${driversPath}/${id}`, { headers }).then(({ data }) => {
         return data;
       }),
     { onSuccess, onError }
