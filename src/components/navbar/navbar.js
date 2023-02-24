@@ -30,7 +30,7 @@ export function Navbar() {
                 style={{ visibility: pathname === "/" ? "visible" : "hidden" }}
               />
               <p className={"title"}>
-                <Link to="/">ORC</Link>
+                <Link to="/home">ORC</Link>
               </p>
             </div>
 
