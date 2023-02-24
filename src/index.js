@@ -5,7 +5,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HomePage, ErrorPage, DriversPage, VehiclesPage, CompaniesPage } from "./pages";
-import { Navbar } from "./components";
+import { Navbar, ProtectedRoute } from "./components";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const router = createBrowserRouter([
@@ -21,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/motoristas",
-        element: <DriversPage />
+        element: (
+          <ProtectedRoute>
+            <DriversPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: "/veiculos",

@@ -2,6 +2,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { Navitem } from "./navitem";
 import { Outlet } from "react-router-dom";
 import { useLocation, Link } from "react-router-dom";
+import { AuthProvider } from "../../hooks";
 import "./navbar.css";
 
 const selectedStyle = {
@@ -51,7 +52,9 @@ export function Navbar() {
           />
         </div>
       </div>
-      <Outlet />
+      <AuthProvider>
+        <Outlet />
+      </AuthProvider>
     </>
   );
 }
