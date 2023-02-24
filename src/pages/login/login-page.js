@@ -13,7 +13,7 @@ export function LoginPage() {
   };
 
   const onError = (e) => {
-    alert(e.response.data);
+    alert(JSON.stringify(e.response.data));
   };
 
   const { mutate, isLoading } = useLogin(onSuccess, onError);
