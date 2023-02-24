@@ -5,16 +5,26 @@ import { useFormik } from "formik";
 import { useAuth, useLogin } from "../../hooks";
 import { Loading } from "../../components";
 import { loginSchema } from "./login-schema";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function LoginPage() {
-  const { login } = useAuth();
-  const onSuccess = (user) => {
-    login(user);
+  const { user, login } = useAuth();
+  const navigate = useNavigate();
+
+  const onSuccess = (u) => {
+    login(u);
   };
 
   const onError = (e) => {
     alert(JSON.stringify(e.response.data));
   };
+
+  useEffect(() => {
+    if (user !== null) {
+      navigate("/home");
+    }
+  }, [navigate, user]);
 
   const { mutate, isLoading } = useLogin(onSuccess, onError);
   const {
