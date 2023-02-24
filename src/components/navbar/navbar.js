@@ -5,6 +5,7 @@ import { useLocation, Link } from "react-router-dom";
 import { AuthProvider } from "../../hooks";
 
 import "./navbar.css";
+import { useEffect } from "react";
 
 const selectedStyle = {
   marginTop: "-0.18em",
@@ -18,10 +19,11 @@ export function Navbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  if (pathname === "/") {
-    navigate("/home");
-  }
-
+  useEffect(() => {
+    if (pathname === "/") {
+      navigate("/home");
+    }
+  }, [navigate, pathname]);
   return (
     <>
       <AuthProvider>
