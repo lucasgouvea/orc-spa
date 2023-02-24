@@ -47,7 +47,7 @@ export function useUpdateDriver(onSuccess, onError) {
   const { mutate, isLoading } = useMutation(
     (driver) =>
       axios
-        .patch(`${endpoint}${driversPath}/${driver.id}`, new DriverPatchDTO(driver), headers)
+        .patch(`${endpoint}${driversPath}/${driver.id}`, new DriverPatchDTO(driver), { headers })
         .then(({ data }) => {
           return data;
         }),

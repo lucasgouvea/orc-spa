@@ -1,7 +1,7 @@
 export class Vehicle {
-  constructor({ id, model, license_plate }) {
+  constructor({ id, model_description, license_plate }) {
     this.id = id;
-    this.model = model;
+    this.model = model_description;
     this.licensePlate = license_plate;
   }
 
