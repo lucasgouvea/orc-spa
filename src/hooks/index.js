@@ -8,9 +8,11 @@ export * from "./local-storage";
 export * from "./user/hooks";
 
 export function useHeaders() {
-  const {
-    user: { token }
-  } = useAuth();
+  const { user, logout } = useAuth();
 
-  return { Authorization: `Bearer ${token}` };
+  if (user === null || typeof user.token !== "string") {
+    logout();
+  }
+
+  return { Authorization: `Bearer ${user.token}` };
 }

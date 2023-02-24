@@ -35,7 +35,7 @@ export function useCreateVehicle(onSuccess, onError) {
   const { mutate, isLoading } = useMutation(
     (vehicle) =>
       axios
-        .post(`${endpoint}${vehiclesPath}`, { headers }, new VehiclePostDTO(vehicle))
+        .post(`${endpoint}${vehiclesPath}`, new VehiclePostDTO(vehicle), { headers })
         .then(({ data }) => data),
     { onSuccess, onError }
   );
@@ -47,11 +47,9 @@ export function useUpdateVehicle(onSuccess, onError) {
   const { mutate, isLoading } = useMutation(
     (vehicle) =>
       axios
-        .patch(
-          `${endpoint}${vehiclesPath}/${vehicle.id}`,
-          { headers },
-          new VehiclePatchDTO(vehicle)
-        )
+        .patch(`${endpoint}${vehiclesPath}/${vehicle.id}`, new VehiclePatchDTO(vehicle), {
+          headers
+        })
         .then(({ data }) => {
           return data;
         }),

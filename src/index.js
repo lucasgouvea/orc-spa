@@ -18,7 +18,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />
+        element: (
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: "/motoristas",
@@ -30,11 +34,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/veiculos",
-        element: <VehiclesPage />
+        element: (
+          <ProtectedRoute>
+            <VehiclesPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: "/empresas",
-        element: <CompaniesPage />
+        element: (
+          <ProtectedRoute>
+            <CompaniesPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: "/login",

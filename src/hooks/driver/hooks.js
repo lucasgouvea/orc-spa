@@ -35,7 +35,7 @@ export function useCreateDriver(onSuccess, onError) {
   const { mutate, isLoading } = useMutation(
     (driver) =>
       axios
-        .post(`${endpoint}${driversPath}`, { headers }, new DriverPostDTO(driver))
+        .post(`${endpoint}${driversPath}`, new DriverPostDTO(driver), { headers })
         .then(({ data }) => data),
     { onSuccess, onError }
   );
@@ -47,7 +47,7 @@ export function useUpdateDriver(onSuccess, onError) {
   const { mutate, isLoading } = useMutation(
     (driver) =>
       axios
-        .patch(`${endpoint}${driversPath}/${driver.id}`, headers, new DriverPatchDTO(driver))
+        .patch(`${endpoint}${driversPath}/${driver.id}`, new DriverPatchDTO(driver), headers)
         .then(({ data }) => {
           return data;
         }),

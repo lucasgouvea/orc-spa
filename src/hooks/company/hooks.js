@@ -35,7 +35,7 @@ export function useCreateCompany(onSuccess, onError) {
   const { mutate, isLoading } = useMutation(
     (company) =>
       axios
-        .post(`${endpoint}${companiesPath}`, { headers }, new CompanyPostDTO(company))
+        .post(`${endpoint}${companiesPath}`, new CompanyPostDTO(company), { headers })
         .then(({ data }) => data),
     { onSuccess, onError }
   );
@@ -47,11 +47,9 @@ export function useUpdateCompany(onSuccess, onError) {
   const { mutate, isLoading } = useMutation(
     (company) =>
       axios
-        .patch(
-          `${endpoint}${companiesPath}/${company.id}`,
-          { headers },
-          new CompanyPatchDTO(company)
-        )
+        .patch(`${endpoint}${companiesPath}/${company.id}`, new CompanyPatchDTO(company), {
+          headers
+        })
         .then(({ data }) => {
           return data;
         }),
