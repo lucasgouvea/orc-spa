@@ -12,11 +12,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <ProtectedRoute>
-        <Navbar />
-      </ProtectedRoute>
-    ),
+    element: <Navbar />,
     errorElement: <ErrorPage />,
 
     children: [

@@ -1,6 +1,6 @@
 import { FaChevronRight } from "react-icons/fa";
 import { Navitem } from "./navitem";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useLocation, Link } from "react-router-dom";
 import { AuthProvider } from "../../hooks";
 
@@ -16,6 +16,11 @@ const selectedStyle = {
 
 export function Navbar() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  if (pathname === "/") {
+    navigate("/home");
+  }
 
   return (
     <>
