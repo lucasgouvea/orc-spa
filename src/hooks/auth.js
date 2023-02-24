@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (u) => {
     setUser(u);
-    navigate("/");
+    navigate("/home");
   };
 
   const logout = () => {
