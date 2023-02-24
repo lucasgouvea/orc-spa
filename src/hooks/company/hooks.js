@@ -3,6 +3,7 @@ import { Company } from "./company";
 import { CompanyPatchDTO, CompanyPostDTO } from "./company-dto";
 import axios from "axios";
 import { useMutation } from "react-query";
+import { useHeaders } from "..";
 
 let endpoint = "https://orc-api.lucasgouvea.com";
 if (process.env.NODE_ENV === "development") {
@@ -11,12 +12,13 @@ if (process.env.NODE_ENV === "development") {
 const companiesPath = "/v1/companies";
 
 export function useCompanies() {
+  const headers = useHeaders();
   const {
     isLoading,
     error,
     data: companies
   } = useQuery("companies", () =>
-    axios(`${endpoint}${companiesPath}`).then(({ data: companies }) =>
+    axios(`${endpoint}${companiesPath}`, { headers }).then(({ data: companies }) =>
       companies.map((d) => new Company(d))
     )
   );
@@ -29,10 +31,11 @@ export function useCompanies() {
 }
 
 export function useCreateCompany(onSuccess, onError) {
+  const headers = useHeaders();
   const { mutate, isLoading } = useMutation(
     (company) =>
       axios
-        .post(`${endpoint}${companiesPath}`, new CompanyPostDTO(company))
+        .post(`${endpoint}${companiesPath}`, { headers }, new CompanyPostDTO(company))
         .then(({ data }) => data),
     { onSuccess, onError }
   );
@@ -40,10 +43,15 @@ export function useCreateCompany(onSuccess, onError) {
 }
 
 export function useUpdateCompany(onSuccess, onError) {
+  const headers = useHeaders();
   const { mutate, isLoading } = useMutation(
     (company) =>
       axios
-        .patch(`${endpoint}${companiesPath}/${company.id}`, new CompanyPatchDTO(company))
+        .patch(
+          `${endpoint}${companiesPath}/${company.id}`,
+          { headers },
+          new CompanyPatchDTO(company)
+        )
         .then(({ data }) => {
           return data;
         }),
@@ -53,9 +61,10 @@ export function useUpdateCompany(onSuccess, onError) {
 }
 
 export function useDeleteCompany(onSuccess, onError) {
+  const headers = useHeaders();
   const { mutate, isLoading } = useMutation(
     (id) =>
-      axios.delete(`${endpoint}${companiesPath}/${id}`).then(({ data }) => {
+      axios.delete(`${endpoint}${companiesPath}/${id}`, { headers }).then(({ data }) => {
         return data;
       }),
     { onSuccess, onError }

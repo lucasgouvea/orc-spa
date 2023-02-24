@@ -4,8 +4,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, ErrorPage, DriversPage, VehiclesPage, CompaniesPage } from "./pages";
+import { HomePage, ErrorPage, DriversPage, VehiclesPage, CompaniesPage, LoginPage } from "./pages";
 import { Navbar, ProtectedRoute } from "./components";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const router = createBrowserRouter([
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
       {
         path: "/empresas",
         element: <CompaniesPage />
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+        errorElement: <ErrorPage />
       }
     ]
   }

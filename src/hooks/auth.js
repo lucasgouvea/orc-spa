@@ -8,15 +8,14 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage("user", null);
   const navigate = useNavigate();
 
-  const login = async (u) => {
+  const login = (u) => {
     setUser(u);
-    navigate("/profile");
+    navigate("/");
   };
 
-  // call this function to sign out logged in user
   const logout = () => {
     setUser(null);
-    navigate("/", { replace: true });
+    navigate("/login", { replace: true });
   };
 
   const value = useMemo(
