@@ -34,7 +34,7 @@ export function Navbar() {
                 className={"icon"}
                 color="#FDFFF1"
                 size="12"
-                style={{ visibility: pathname === "/" ? "visible" : "hidden" }}
+                style={{ visibility: pathname === "/home" ? "visible" : "hidden" }}
               />
               <p className={"title"}>
                 <Link to="/home">ORC</Link>
