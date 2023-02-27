@@ -4,7 +4,15 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, ErrorPage, DriversPage, VehiclesPage, CompaniesPage, LoginPage } from "./pages";
+import {
+  HomePage,
+  ErrorPage,
+  DriversPage,
+  VehiclesPage,
+  CompaniesPage,
+  LoginPage,
+  RoutesPage
+} from "./pages";
 import { Navbar, ProtectedRoute } from "./components";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -45,6 +53,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <CompaniesPage />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "/rotas",
+        element: (
+          <ProtectedRoute>
+            <RoutesPage />
           </ProtectedRoute>
         )
       },

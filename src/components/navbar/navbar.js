@@ -60,6 +60,12 @@ export function Navbar() {
                 routeName={"empresas"}
                 pathName={pathname}
               />
+              <Navitem
+                selectedStyle={selectedStyle}
+                navName={"rotas"}
+                routeName={"rotas"}
+                pathName={pathname}
+              />
             </div>
           </div>
         )}
